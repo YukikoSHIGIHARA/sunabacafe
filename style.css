@@ -1,0 +1,330 @@
+:root {
+  --bg: #f6efe3;
+  --paper: #fff8ef;
+  --paper-deep: #efe1ca;
+  --brown: #6b4733;
+  --brown-deep: #3f2a1f;
+  --line: #c7a27f;
+  --accent: #b66449;
+  --accent-soft: #d8c59a;
+  --green: #7e8866;
+  --shadow: 0 12px 28px rgba(70, 45, 28, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--brown-deep);
+  /* クラシックな明朝体を優先指定 */
+  font-family: "Shippori Mincho", "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  background:
+    linear-gradient(rgba(255, 248, 239, 0.94), rgba(255, 248, 239, 0.94)),
+    repeating-linear-gradient(
+      45deg,
+      #e6c7a8 0 14px,
+      #f1dac0 14px 28px
+    );
+  padding: 18px;
+  line-height: 1.6;
+}
+
+.site-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 40px);
+  background: var(--bg);
+  border: 2px solid var(--line);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(107, 71, 51, 0.28);
+  pointer-events: none;
+}
+
+/* --- ヘッダー --- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px; /* メモボックスを少し広く */
+  gap: 24px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.main-paper,
+.memo-box,
+.polaroid,
+.menu-column,
+.map-card {
+  background: var(--paper);
+  border: 2px solid #d3b18d;
+  box-shadow: var(--shadow);
+}
+
+/* ロゴが入っている白い箱（枠線）の設定 */
+.main-paper {
+  text-align: center;
+  /* ★修正ポイント1：内側の余白（上下、左右）を大きくする */
+  padding: 40px 30px; 
+  /* もし営業時間の下にまだ余裕が欲しければ、下だけ大きくする */
+  /* padding: 40px 30px 60px; */
+
+  background: var(--paper);
+  border: 2px solid #d3b18d;
+  box-shadow: var(--shadow);
+  position: relative;
+  
+  /* ★修正ポイント2：ロゴのはみ出しを絶対に許さない設定 */
+  overflow: visible; /* 初期値ですが、もし hidden になってたら直す */
+}
+
+.sub-copy {
+  margin: 0 0 16px;
+  font-size: 1.2rem;       /* 大きく */
+  letter-spacing: 0.25em;  /* 間隔を広げて格調高く */
+  font-weight: 600;
+}
+
+/* ロゴの文字設定 */
+/* --- メインロゴ (SUNABACAFE) の設定 --- */
+h1 {
+  /* ★修正ポイント1：色を温かみのある白（クリーム色）にする */
+  color: #fffaf2; /* 真っ白 (#fff) よりもレトロな雰囲気に馴染みます */
+  
+  /* ★修正ポイント2：ロゴの位置を下に下げる */
+  /* 今の margin-top がもし設定されていたら、それを大きくする */
+  margin-top: 60px; /* 以前より30px〜40pxほど大きくして、下に下げました */
+  margin-bottom: 24px; /* ロゴの下の余白（営業時間との間）は今のまま */
+  
+  /* 以下は文字を目立たせるための重要な設定（今のままでOK） */
+  font-size: clamp(3rem, 10vw, 7rem); /* 画面サイズに合わせて自動調整 */
+  letter-spacing: 0.08em;
+  font-family: 'Shippori Mincho', serif; /* 和モダンなロゴフォント */
+  line-height: 1.1;
+  text-align: center; /* 中央寄せ */
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5); /* 文字に影をつけて、白いライトと重なっても読めるようにする */
+  
+  /* ロゴの下の線（お好みで） */
+  border-bottom: 2px solid rgba(255,248,239,0.5); 
+  padding-bottom: 15px;
+  
+  /* 横幅いっぱいに広がらないように制限 */
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shop-info {
+  margin: 12px 0;
+  font-size: 1.4rem;       /* 大きく */
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+.memo-box {
+  padding: 30px 24px;
+  background: #efe0c2;
+  transform: rotate(2deg);
+  position: relative;
+}
+
+.memo-box p {
+  margin: 15px 0;
+  font-size: 1.5rem;       /* メモの文字も大きく */
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+
+/* --- ギャラリー --- */
+.gallery {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.polaroid {
+  padding: 16px 16px 24px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top; /* 店長の顔が切れないように */
+}
+
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(95, 64, 46, 0.2);
+}
+
+.polaroid h2 {
+  font-size: 1.6rem;       /* 「店長の写真」などの文字を大きく */
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* --- メニュー設定 --- */
+.section-title {
+  text-align: center;
+  margin: 60px 0 40px;
+}
+
+.section-title span {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 2px solid #bb906d;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e7dcc2, #d5c398);
+  color: var(--brown);
+  font-size: 1.8rem;       /* タイトルを大きく */
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+
+.menu-grid {
+  display: flex;
+  flex-direction: column; 
+  gap: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.menu-column {
+  padding: 40px;
+}
+
+.menu-column h3 {
+  margin: 0 0 30px;
+  padding-bottom: 15px;
+  font-size: 2.5rem;       /* Drink / Food をかなり大きく */
+  color: var(--brown);
+  border-bottom: 3px double #d4b291; /* 二重線でクラシックに */
+  font-style: italic;
+  font-family: "Georgia", serif;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.menu-card {
+  background: #fffaf2;
+  border: 1px solid #dcc0a2;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px); /* 少し浮く演出 */
+}
+
+.menu-visual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.menu-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-name {
+  font-size: 1.6rem;       /* メニュー名を大きく */
+  font-weight: bold;
+  margin: 15px 0 10px;
+  letter-spacing: 0.05em;
+}
+
+.menu-price {
+  font-size: 2.2rem;       /* 金額をかなり大きく */
+  color: var(--accent);   /* 少し赤みのある茶色で強調 */
+  font-weight: bold;
+  font-family: "Georgia", serif;
+}
+
+/* --- 地図 --- */
+.access-section {
+  margin-top: 60px;
+}
+
+.map-card {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+iframe {
+  border: 0;
+  display: block;
+}
+
+/* --- スマホ対応 --- */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .menu-column { padding: 20px; }
+  h1 { font-size: 3.5rem; }
+}
+
+/* 写真の上に文字を重ねるための設定 */
+.main-visual {
+  width: 100%;
+  height: 600px; /* 高さは好みで調整 */
+  position: relative;
+  background-image: url("cafe.png"); /* 背景に写真を設定 */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* 写真を少し暗くして文字を見やすくする */
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+}
+
+.visual-content {
+  text-align: center;
+  color: #fff8ef; /* 文字を白っぽく */
+  z-index: 1;
+}
+
+.visual-logo {
+  font-size: clamp(3rem, 10vw, 6rem) !important;
+  margin: 10px 0;
+  border-bottom: 2px solid #fff8ef;
+  padding-bottom: 10px;
+}
+
+/* メモボックスが写真の右上にくるように調整 */
+.memo-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  transform: rotate(2deg);
+}
